@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     outputs:
-      messages: ${{ steps.result.outputs.messages.body }}
+      messages: ${{ steps.result.outputs.messages.Body }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
