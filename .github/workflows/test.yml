@@ -30,4 +30,4 @@ jobs:
     needs: test 
     steps:   
       - name: Display Result 
-        run: echo "${{ steps.result.outputs..messages}}"         
+        run: echo "hello"         
