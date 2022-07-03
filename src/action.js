@@ -46,7 +46,7 @@ async function run() {
         // console.log(`err ${err.message}`) 
       } else {
         core.setOutput(data)
-        console.log(`resp ${JSON.stringify(data, null, 2)}`);
+        // console.log(`resp ${JSON.stringify(data, null, 2)}`);
       }
     });
 
