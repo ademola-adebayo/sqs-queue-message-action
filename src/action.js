@@ -22,7 +22,7 @@ async function run() {
 
     const sqs = new AWS.SQS({ apiVersion: "2012-11-05" });
 
-    const returnQueueName = sqs.getQueueUrl(queueParams, (err, data) => {
+    const { ResponseMetadata, QueueUrl  } = sqs.getQueueUrl(queueParams, (err, data) => {
       if (err) {
         core.debug(err.Message);
         core.setFailed(err.Message); 
@@ -33,7 +33,8 @@ async function run() {
       }
     });
 
-    console.log(`QUEUE NAME => ${returnQueueName}`)
+    console.log(`QUEUE NAME => ${QueueUrl}`)
+    console.log(`METADATA => ${ResponseMetadata}`)
   } catch (error) {
     core.setFailed(error.message);
   }
