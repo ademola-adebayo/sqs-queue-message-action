@@ -2,11 +2,21 @@ name: "SQS Queue action"
 description: "Simple SQS Queue Messages Action"
 author: 'Demola Adebayo'
 inputs:
-  queue-name:
+  AWS_REGION:
+    description: "A AWSN SNS Region. Can alternatively be stored in environment"
+    required: true
+  AWS_ACCESS_KEY_ID:
+    description: "A AWS SNS Key. Can alternatively be stored in environment"
+    required: true
+  AWS_SECRET_ACCESS_KEY:
+    description: "A AWS SNS Secret. Can alternatively be stored in environment"
+    required: true
+  QUEUE_NAME:
     description: 'name of the queue whose URL must be fetched.'
     required: true
-  attribute-names:
+  ATTRIBUTE_NAMES:
     description: 'List of attributes that need to be returned with each message'
+
 
 outputs:
   status:
