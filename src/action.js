@@ -36,17 +36,16 @@ async function run() {
    console.log(`RETURNED ${queueUrl}`); 
   
    var params = {
-    QueueUrl: queueUrl,
-    AttributeNames: ATTRIBUTE_NAMES
+    QueueUrl: queueUrl  
    }
 
    sqs.receiveMessage(params, (err, data) => {
       if (err) {
-        core.debug(err.Message);
-        core.setFailed(err.Message); 
+        // core.debug(err.Message);
+        // core.setFailed(err.Message);
+        console.log(`err ${err.message}`) 
       } else {
         console.log(`resp ${JSON.stringify(data, null, 2)}`);
-        return data;
       }
     });
 
