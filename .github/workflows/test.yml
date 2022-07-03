@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Custom Actions test
-        id: result
+        id: futurama
         uses: ./
         with:
           QUEUE_NAME: ${{ secrets.QUEUE_NAME }}
@@ -24,7 +24,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
 
-      - run: 'echo Created issue ${{ steps.result.outputs.messages  }}'      
+      - run: 'echo Created issue ${{ steps.futurama.outputs.messages  }}'      
 
   # consume: 
   #   runs-on: ubuntu-latest

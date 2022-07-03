@@ -33,7 +33,7 @@ async function getQueues() {
 async function run() {
   try {
    const queueUrl = await  getQueues()
-   console.log(`RETURNED ${queueUrl}`); 
+  //  console.log(`RETURNED ${queueUrl}`); 
   
    var params = {
     QueueUrl: queueUrl  
@@ -41,13 +41,13 @@ async function run() {
 
    sqs.receiveMessage(params, (err, data) => {
       if (err) {
-        core.debug(err.Message);
+        // core.debug( err.Message);
         core.setFailed(err.Message);
-        // console.log(`err ${err.message}`) 
+        console.log(`err ${err.message}`) 
       } else {
-        core.setOutput(data.Messages[0].Body)
+        core.setOutput('messages', data.Messages[0].Body)
         console.log(`resp ${JSON.stringify(data.Messages[0].Body, null, 2)}`);
-        return data.Messages[0].Body
+        // return data.Messages[0].Body
       }
     });
 
