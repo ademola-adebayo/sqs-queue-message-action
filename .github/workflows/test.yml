@@ -30,4 +30,4 @@ jobs:
     needs: test 
     steps:   
       - name: Display Result 
-        run: echo "${{ needs.test.outputs..messages.Body}}"         
+        run: echo "${{ needs.test.outputs.messages.Body}}"         
