@@ -41,10 +41,11 @@ async function run() {
 
    sqs.receiveMessage(params, (err, data) => {
       if (err) {
-        // core.debug(err.Message);
-        // core.setFailed(err.Message);
-        console.log(`err ${err.message}`) 
+        core.debug(err.Message);
+        core.setFailed(err.Message);
+        // console.log(`err ${err.message}`) 
       } else {
+        core.setOutput(data)
         console.log(`resp ${JSON.stringify(data, null, 2)}`);
       }
     });
