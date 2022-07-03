@@ -22,14 +22,17 @@ async function run() {
 
     const sqs = new AWS.SQS({ apiVersion: "2012-11-05" });
 
-    const { ResponseMetadata, QueueUrl  } = sqs.getQueueUrl(queueParams, (err, data) => {
+    const { ResponseMetadata, QueueUrl } =  sqs.getQueueUrl(queueParams, (err, data) => {
       if (err) {
         core.debug(err.Message);
         core.setFailed(err.Message); 
       } else {
         console.log(`resp ${JSON.stringify(data, null, 2)}`);
-        const { QueueUrl } = data
-        return QueueUrl
+        const { ResponseMetadata, QueueUrl } = data
+        return { 
+          ResponseMetadata,
+          QueueUrl
+        }
       }
     });
 
