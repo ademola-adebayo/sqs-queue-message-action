@@ -45,8 +45,9 @@ async function run() {
         core.setFailed(err.Message);
         // console.log(`err ${err.message}`) 
       } else {
-        core.setOutput(data)
-        // console.log(`resp ${JSON.stringify(data, null, 2)}`);
+        core.setOutput(data.Messages[0].Body)
+        console.log(`resp ${JSON.stringify(data.Messages[0].Body, null, 2)}`);
+        return data.Messages[0].Body
       }
     });
 
