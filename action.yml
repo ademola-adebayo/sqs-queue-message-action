@@ -1,0 +1,26 @@
+name: "SQS Queue action"
+description: "Simple SQS Queue Messages Action"
+author: 'Demola Adebayo'
+inputs:
+  queue-name:
+    description: 'name of the queue whose URL must be fetched.'
+    required: true
+  attribute-names:
+    description: 'List of attributes that need to be returned with each message'
+
+outputs:
+  status:
+    description: "Status of action"
+  messages:
+    description: "message body to receive"
+
+runs:
+  using: "node16"
+  main: "dist/index.js"
+
+branding:
+  icon: 'message-square'
+  color: 'orange'
+
+
+
