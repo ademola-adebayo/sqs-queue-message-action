@@ -24,4 +24,4 @@ jobs:
       
       
       - name: Display Result 
-        run: echo "${{ steps.result.outputs..messages}}""          
+        run: echo "${{ steps.result.outputs..messages}}"         
