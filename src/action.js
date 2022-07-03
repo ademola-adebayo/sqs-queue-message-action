@@ -32,7 +32,7 @@ async function getQueues() {
 async function run() {
   try {
 
-   const returnedUrl = getQueues()
+   const returnedUrl = await  getQueues()
    console.log(`RETURNED ${returnedUrl}`); 
 
    
