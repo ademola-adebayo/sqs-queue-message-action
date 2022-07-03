@@ -18,38 +18,37 @@ AWS.config.update({
 const sqs = new AWS.SQS({ apiVersion: "2012-11-05" });
 
 async function getQueues() {
-  var queueParams = {
+  var params = {
     QueueName: QUEUE_NAME
   };
   try {
-    const result = await sqs.getQueueUrl(queueParams).promise()
+    const result = await sqs.getQueueUrl(params).promise()
     return result.QueueUrl
   } catch (err) {
     console.log(`err ${err.message}`)
   }
 }
 
+
 async function run() {
   try {
+   const queueUrl = await  getQueues()
+   console.log(`RETURNED ${queueUrl}`); 
+  
+   var params = {
+    QueueUrl: queueUrl,
+    AttributeNames: ATTRIBUTE_NAMES
+   }
 
-   const returnedUrl = await  getQueues()
-   console.log(`RETURNED ${returnedUrl}`); 
-
-   
-
-  //  sqs.getQueueUrl(queueParams, (err, data) => {
-  //     if (err) {
-  //       core.debug(err.Message);
-  //       core.setFailed(err.Message); 
-  //     } else {
-  //       console.log(`resp ${JSON.stringify(data, null, 2)}`);
-  //       const { ResponseMetadata, QueueUrl } = data
-  //       return { 
-  //         ResponseMetadata,
-  //         QueueUrl
-  //       }
-  //     }
-  //   });
+   sqs.receiveMessage(params, (err, data) => {
+      if (err) {
+        core.debug(err.Message);
+        core.setFailed(err.Message); 
+      } else {
+        console.log(`resp ${JSON.stringify(data, null, 2)}`);
+        return data;
+      }
+    });
 
   } catch (error) {
     core.setFailed(error.message);
