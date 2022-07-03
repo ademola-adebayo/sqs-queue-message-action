@@ -1,19 +1,19 @@
-name: Tests 
+name: Tests
 
-on: 
+on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
-jobs: 
+jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Custom Actions test 
+      - name: Custom Actions test
         uses: ./
         with:
           QUEUE_NAME: ${{ secrets.QUEUE_NAME }}

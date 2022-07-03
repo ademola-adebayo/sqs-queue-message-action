@@ -1,6 +1,6 @@
 name: "SQS Queue action"
 description: "Simple SQS Queue Messages Action"
-author: 'Demola Adebayo'
+author: "Demola Adebayo"
 inputs:
   AWS_REGION:
     description: "A AWSN SNS Region. Can alternatively be stored in environment"
@@ -12,11 +12,10 @@ inputs:
     description: "A AWS SNS Secret. Can alternatively be stored in environment"
     required: true
   QUEUE_NAME:
-    description: 'name of the queue whose URL must be fetched.'
+    description: "name of the queue whose URL must be fetched."
     required: true
   ATTRIBUTE_NAMES:
-    description: 'List of attributes that need to be returned with each message'
-
+    description: "List of attributes that need to be returned with each message"
 
 outputs:
   status:
@@ -29,8 +28,5 @@ runs:
   main: "dist/index.js"
 
 branding:
-  icon: 'message-square'
-  color: 'orange'
-
-
-
+  icon: "message-square"
+  color: "orange"

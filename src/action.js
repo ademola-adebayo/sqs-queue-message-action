@@ -10,7 +10,6 @@
 
 // const sqs = new AWS.SQS({apiVersion: '2012-11-05'})
 
-
 // async function run() {
 //   try {
 //     const QueueName = core.getInput('queue-name', { require: true });
@@ -30,7 +29,7 @@
 //     console.log(``)
 //     const attributeNames = core.getInput('attribute-names')
 //     const params = {
-      
+
 //     }
 
 //   } catch(error) {
@@ -38,18 +37,17 @@
 //   }
 // }
 
-const core = require('@actions/core');
-const github = require('@actions/github');
-const AWS = require('aws-sdk');
-
+const core = require("@actions/core");
+const github = require("@actions/github");
+const AWS = require("aws-sdk");
 
 async function run() {
   try {
-    const AWS_ACCESS_KEY_ID = core.getInput('AWS_ACCESS_KEY_ID', { require: true });
-    const AWS_SECRET_ACCESS_KEY = core.getInput('AWS_SECRET_ACCESS_KEY', { require: true });
-    const AWS_REGION = core.getInput('AWS_REGION', { require: true });
-    const QUEUE_NAME = core.getInput('QUEUE_NAME', { require: true });
-    const ATTRIBUTE_NAMES = core.getInput('ATTRIBUTE_NAMES');
+    const AWS_ACCESS_KEY_ID = core.getInput("AWS_ACCESS_KEY_ID", { require: true });
+    const AWS_SECRET_ACCESS_KEY = core.getInput("AWS_SECRET_ACCESS_KEY", { require: true });
+    const AWS_REGION = core.getInput("AWS_REGION", { require: true });
+    const QUEUE_NAME = core.getInput("QUEUE_NAME", { require: true });
+    const ATTRIBUTE_NAMES = core.getInput("ATTRIBUTE_NAMES");
 
     AWS.config.update({
       region: AWS_REGION,
@@ -57,31 +55,29 @@ async function run() {
       secretAccessKey: AWS_SECRET_ACCESS_KEY
     });
 
-    console.log(`QUEUE URL => ${QUEUE_NAME}`)
+    console.log(`QUEUE URL => ${QUEUE_NAME}`);
     var queueParams = {
-      QueueName: QUEUE_NAME,
-    }
+      QueueName: QUEUE_NAME
+    };
 
-    const sqs = new AWS.SQS({apiVersion: '2012-11-05'})
-
+    const sqs = new AWS.SQS({ apiVersion: "2012-11-05" });
 
     sqs.getQueueUrl(queueParams, (err, data) => {
       if (err) {
-        console.log(err, err.stack)
+        console.log(err, err.stack);
         throw err;
       } else {
         console.log(`resp ${JSON.stringify(data, null, 2)}`);
       }
     });
-   
-  } catch(error) {
-    core.setFailed(error.message)
+  } catch (error) {
+    core.setFailed(error.message);
   }
 }
 
 module.exports = run;
 
 /**istanbul ignore next */
-if(require.main === module) {
-  run()
+if (require.main === module) {
+  run();
 }
