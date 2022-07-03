@@ -40,13 +40,12 @@ async function run() {
 
    sqs.receiveMessage(params, (err, data) => {
       if (err) {
-        // core.debug( err.Message);
-        core.setFailed(err.Message);
+        core.debug(`[Custom] Error: ${err.Message}`);
+        core.setFailed(`[Custom] Retrieving err: ${err.Message}`);
         console.log(`err ${err.message}`) 
       } else {
         core.setOutput('messages', data.Messages[0].Body)
         // console.log(`resp ${JSON.stringify(data.Messages[0].Body, null, 2)}`);
-        // return data.Messages[0].Body
       }
     });
 
@@ -57,7 +56,7 @@ async function run() {
 
 module.exports = run;
 
-/**istanbul ignore next */
+/* istanbul ignore next */
 if (require.main === module) {
   run();
 }
