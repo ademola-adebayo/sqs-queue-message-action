@@ -33,7 +33,6 @@ async function getQueues() {
 async function run() {
   try {
    const queueUrl = await  getQueues()
-  //  console.log(`RETURNED ${queueUrl}`); 
   
    var params = {
     QueueUrl: queueUrl  
@@ -46,7 +45,7 @@ async function run() {
         console.log(`err ${err.message}`) 
       } else {
         core.setOutput('messages', data.Messages[0].Body)
-        console.log(`resp ${JSON.stringify(data.Messages[0].Body, null, 2)}`);
+        // console.log(`resp ${JSON.stringify(data.Messages[0].Body, null, 2)}`);
         // return data.Messages[0].Body
       }
     });
